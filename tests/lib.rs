@@ -10,6 +10,8 @@ mod base {
     use capsicum::{Right, FileRights, RightsBuilder};
     use capsicum::{IoctlRights, IoctlsBuilder};
     use capsicum::{Fcntl, FcntlRights, FcntlsBuilder};
+    use capsicum::{init};
+
     use std::fs;
     use std::io::{Read, Write};
 
@@ -24,12 +26,20 @@ mod base {
     }
 
     #[test]
+    fn test_casper() {
+        
+        init().expect("cap_init failed!");
+        enter().expect("cap_enter failed!");
+
+    }
+
+    #[test]
     fn test_rights_right() {
         assert_eq!(144115188075855873u64, Right::Read as u64);
     }
 
     #[test]
-    fn test_rights_builer() {
+    fn test_rights_builder() {
         let mut builder = RightsBuilder::new(Right::Read);
         builder.add(Right::Lookup).add(Right::AclSet)
                                   .add(Right::AclSet)

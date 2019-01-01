@@ -62,6 +62,7 @@ mod fcntl;
 mod ioctl;
 mod process;
 mod right;
+mod casper;
 pub mod util;
 
 pub use common::{CapResult, CapErr, CapRights};
@@ -69,3 +70,4 @@ pub use fcntl::{Fcntl, FcntlRights, FcntlsBuilder};
 pub use ioctl::{IoctlRights, IoctlsBuilder};
 pub use process::{get_mode, enter, sandboxed};
 pub use right::{Right, FileRights, RightsBuilder};
+pub use casper::{init};
